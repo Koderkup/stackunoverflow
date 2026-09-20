@@ -1,4 +1,5 @@
 import TerminalIntro from './components/terminalIntro/TerminalIntro';
+import Whoami from './components/whoami/Whoami';
 
 export default function Home() {
   return (
@@ -7,10 +8,10 @@ export default function Home() {
         System Ready
       </h1>
       <p className='text-lg tracking-wide opacity-80'>
-        Welcome to the terminal. Awaiting Loading ..
-        <span className='terminal-cursor'>.</span>
+        Welcome to the terminal. Awaiting Loading ...
       </p>
       <TerminalIntro />
+      <Whoami/>
     </main>
   );
 }

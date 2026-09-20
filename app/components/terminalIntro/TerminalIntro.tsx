@@ -4,14 +4,21 @@ import { useKeyboardSound } from '../../lib/useKeyboardSound';
 import { LINES } from '../../constants/constants';
 import TerminalHead from './TerminalHead';
 import TerminalBody from './TerminalBody';
+import { TerminalIntroContext } from './TerminalIntroContext';
 
-export default function TerminalIntro() {
+type TerminalIntroProps = { value?: 0 };
+type TerminalIntroComponent = React.FC<TerminalIntroProps> & {
+  TerminalHead: typeof TerminalHead;
+  TerminalBody: typeof TerminalBody;
+};
+
+const TerminalIntro: TerminalIntroComponent = () => {
   const [displayed, setDisplayed] = useState<string[]>([]);
   const [currentLine, setCurrentLine] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
   const [done, setDone] = useState(false);
   const { start, stop } = useKeyboardSound();
-
+  const text = 'stackunoverflow-terminal';
   // Start sound when typing begins, stop when done
   useEffect(() => {
     if (!done && currentLine === 0 && currentChar === 0) {
@@ -54,19 +61,19 @@ export default function TerminalIntro() {
   }, [currentLine, currentChar]);
 
   return (
-    <div className='w-full bg-black flex flex-col items-center justify-center p-4 scan-lines'>
-      <div className='w-full max-w-4xl'>
-        {/* Шапка терминала */}
-        <TerminalHead text={'stackunoverflow-terminal'} />
-
-        {/* Тело терминала */}
-        <TerminalBody
-          done={done}
-          lines={LINES}
-          currentLine={currentLine}
-          displayed={displayed}
-        ></TerminalBody>
+    <TerminalIntroContext.Provider
+      value={{ text, done, LINES, currentLine, displayed }}
+    >
+      <div className='w-full bg-black flex flex-col items-center justify-center p-4 scan-lines'>
+        <div className='w-full max-w-4xl'>
+          <TerminalIntro.TerminalHead />
+          <TerminalIntro.TerminalBody />
+        </div>
       </div>
-    </div>
+    </TerminalIntroContext.Provider>
   );
-}
+};
+
+TerminalIntro.TerminalHead = TerminalHead;
+TerminalIntro.TerminalBody = TerminalBody;
+export default TerminalIntro;
