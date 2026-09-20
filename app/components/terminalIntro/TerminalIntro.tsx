@@ -5,6 +5,7 @@ import { LINES } from '../../constants/constants';
 import TerminalHead from './TerminalHead';
 import TerminalBody from './TerminalBody';
 import { TerminalIntroContext } from './TerminalIntroContext';
+import { useGlobalStorage } from '@/app/store/GlobalStorageContext';
 
 type TerminalIntroProps = { value?: 0 };
 type TerminalIntroComponent = React.FC<TerminalIntroProps> & {
@@ -16,10 +17,11 @@ const TerminalIntro: TerminalIntroComponent = () => {
   const [displayed, setDisplayed] = useState<string[]>([]);
   const [currentLine, setCurrentLine] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
-  const [done, setDone] = useState(false);
+  const { state, dispatch } = useGlobalStorage();
+  const { done } = state;
   const { start, stop } = useKeyboardSound();
   const text = 'stackunoverflow-terminal';
-  // Start sound when typing begins, stop when done
+
   useEffect(() => {
     if (!done && currentLine === 0 && currentChar === 0) {
       start();
@@ -50,7 +52,7 @@ const TerminalIntro: TerminalIntroComponent = () => {
     } else {
       const timer = setTimeout(() => {
         if (currentLine === LINES.length - 1) {
-          setDone(true);
+          dispatch({ type: 'SET_DONE', payload: true });
         } else {
           setCurrentLine((l) => l + 1);
           setCurrentChar(0);
@@ -58,7 +60,7 @@ const TerminalIntro: TerminalIntroComponent = () => {
       }, 300);
       return () => clearTimeout(timer);
     }
-  }, [currentLine, currentChar]);
+  }, [dispatch, currentLine, currentChar]);
 
   return (
     <TerminalIntroContext.Provider

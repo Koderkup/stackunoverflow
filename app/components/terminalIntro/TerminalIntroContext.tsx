@@ -9,7 +9,8 @@ type TerminalIntroContextType = {
   currentLine: number;
 } | null;
 
-export const TerminalIntroContext = createContext<TerminalIntroContextType>(null);
+export const TerminalIntroContext =
+  createContext<TerminalIntroContextType>(null);
 
 export function useTerminalIntro() {
   const ctx = useContext(TerminalIntroContext);

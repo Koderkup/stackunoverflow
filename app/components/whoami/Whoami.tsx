@@ -1,9 +1,20 @@
 import React from 'react';
 import { Terminal } from 'lucide-react';
+import { useGlobalStorage } from '@/app/store/GlobalStorageContext';
 
-const Whoami = () => {
+const Whoami = ({ visible }: { visible: boolean }) => {
+  const { state } = useGlobalStorage();
+  const { done } = state;
+  const isVisible = visible || done;
   return (
-    <main className='w-full max-w-4xl bg-black flex flex-col items-center justify-center p-4 scan-lines border border-green-500/30 rounded-lg gap-2.5'>
+    <main
+      className={`
+    w-full max-w-4xl bg-black flex flex-col items-center justify-center p-4 
+    scan-lines border border-green-500/30 rounded-lg gap-2.5
+    transition-all duration-700 ease-out
+    ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}
+  `}
+    >
       <section className='w-full neon-text flex flex-row flex-nowrap items-center gap-2'>
         <Terminal className='w-4 h-4 text-green-400' />
         <p className='w-full text-left'>Whoami</p>
@@ -50,8 +61,8 @@ const Whoami = () => {
             </p>
             <ul className='text-green-200/80 text-xs font-mono list-disc list-inside space-y-1'>
               <li>
-                Maintained and enhanced the organization&apos;s official website,
-                ensuring stability, security, and up-to-date content
+                Maintained and enhanced the organization&apos;s official
+                website, ensuring stability, security, and up-to-date content
               </li>
               <li>
                 Managed network administration — configured and monitored local
@@ -66,9 +77,9 @@ const Whoami = () => {
                 access to educational materials
               </li>
               <li>
-                Built native Android app &quot;Smart Recorder&quot; (Kotlin) — offline
-                audio recording with timestamp bookmarks and project-based
-                organization
+                Built native Android app &quot;Smart Recorder&quot; (Kotlin) —
+                offline audio recording with timestamp bookmarks and
+                project-based organization
               </li>
               <li>
                 Collaborated with instructors to tailor app to classroom needs,
@@ -93,8 +104,8 @@ const Whoami = () => {
             </p>
             <ul className='text-green-200/80 text-xs font-mono list-disc list-inside space-y-1'>
               <li>
-                Contributed to &quot;KARDO&quot; — web platform for urban culture events
-                (BMX, skateboarding, street sports)
+                Contributed to &quot;KARDO&quot; — web platform for urban
+                culture events (BMX, skateboarding, street sports)
               </li>
               <li>
                 Built platform using Next.js 14 (App Router) + TypeScript for
