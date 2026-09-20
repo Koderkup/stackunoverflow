@@ -3,7 +3,7 @@ import Whoami from './components/whoami/Whoami';
 
 export default function Home() {
   return (
-    <main className='flex flex-1 flex-col items-center justify-center gap-1 px-8'>
+    <main className='flex flex-1 flex-col items-center justify-center gap-2 px-8'>
       <h1 className='neon-text text-4xl font-bold tracking-widest uppercase'>
         System Ready
       </h1>
