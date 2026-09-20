@@ -32,7 +32,7 @@ const Whoami = () => {
           projects, which helps me continuously improve my development skills
           and understand the full product development process. Currently open to
           Frontend Developer and Full-stack Developer opportunities, including
-          remote and hybrid positions. I'm interested in working with a
+          remote and hybrid positions. I&apos;m interested in working with a
           professional development team where I can contribute to real products,
           solve challenging problems and continue growing as a software
           engineer.
@@ -50,7 +50,7 @@ const Whoami = () => {
             </p>
             <ul className='text-green-200/80 text-xs font-mono list-disc list-inside space-y-1'>
               <li>
-                Maintained and enhanced the organization's official website,
+                Maintained and enhanced the organization&apos;s official website,
                 ensuring stability, security, and up-to-date content
               </li>
               <li>
@@ -66,7 +66,7 @@ const Whoami = () => {
                 access to educational materials
               </li>
               <li>
-                Built native Android app "Smart Recorder" (Kotlin) — offline
+                Built native Android app &quot;Smart Recorder&quot; (Kotlin) — offline
                 audio recording with timestamp bookmarks and project-based
                 organization
               </li>
@@ -93,7 +93,7 @@ const Whoami = () => {
             </p>
             <ul className='text-green-200/80 text-xs font-mono list-disc list-inside space-y-1'>
               <li>
-                Contributed to "KARDO" — web platform for urban culture events
+                Contributed to &quot;KARDO&quot; — web platform for urban culture events
                 (BMX, skateboarding, street sports)
               </li>
               <li>
